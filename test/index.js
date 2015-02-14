@@ -289,7 +289,7 @@ describe('Object Tree Diff', function(){
     }]);
   });
 
-  it.skip('should move children', function () {
+  it.only('should move children', function () {
     var one = {
       key: '1',
       type: 'bar'
@@ -308,7 +308,7 @@ describe('Object Tree Diff', function(){
     };
     var left = {
       type: 'foo',
-      children: [one, two, four]
+      children: [one, two, four, three]
     };
     var right = {
       type: 'foo',
@@ -319,18 +319,12 @@ describe('Object Tree Diff', function(){
       ]
     };
     var changes = diff(left, right);
-    debugger;
     assert.deepEqual(changes, [{
       path: '0',
-      moves: {
-        0: 1,
-        1: 0,
-        reverse: {
-          0: 1,
-          1: 0
-        },
-        removes: {}
-      },
+      left: left,
+      right: right,
+      leftOrder: [1,2,4,3],
+      rightOrder: [2,3,4],
       type: 'node.reorderChildren'
     }]);
   });
