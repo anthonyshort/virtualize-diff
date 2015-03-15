@@ -20,9 +20,9 @@ var changes = diff(left, right);
 
 ```json
 {
-  path: '0.0',
-  type: 'text.update',
-  value: 'Hello Pluto'
+  "path": "0.0",
+  "type": "text.update",
+  "value": "Hello Pluto"
 }
 ```
 
