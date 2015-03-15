@@ -16,7 +16,7 @@ js = $(shell find index.js test/index.js )
 # Default.
 #
 
-default: dist/deku.js
+default: test
 
 #
 # Targets.
@@ -36,8 +36,8 @@ test:
 	@mochify
 .PHONY: test
 
-test-browser: build.js
-	@duo-test browser --commands 'make build.js'
+test-browser: tests.js
+	@duo-test browser --commands 'make tests.js'
 
 test-cloud: tests.js
 	@zuul -- tests.js

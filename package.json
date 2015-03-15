@@ -1,8 +1,8 @@
 {
-  "name": "object-tree-diff",
+  "name": "virtualize-diff",
   "version": "0.0.1",
-  "repository": "anthonyshort/object-tree-diff",
-  "description": "Diff object trees",
+  "repository": "anthonyshort/virtualize-diff",
+  "description": "Diff virtualize nodes",
   "main": "index.js",
   "devDependencies": {
     "bump": "git://github.com/ianstormtaylor/bump.git#0.4.2",

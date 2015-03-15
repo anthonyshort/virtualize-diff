@@ -231,102 +231,93 @@ describe('Object Tree Diff', function(){
     }]);
   });
 
-  it('should return changes for deeply complex children', function () {
-    var slug = {
-      type: 'slug'
-    };
-    var raz = {
-      type: 'raz'
-    };
-    var baz = {
-      type: 'baz'
-    };
-    var left = {
-      type: 'foo',
-      children: [{
-        type: 'raz',
-        attributes: {
-          hello: 'world'
-        }
-      },{
-        type: 'bar',
-        children: [baz]
-      }]
-    };
-    var right = {
-      type: 'foo',
-      children: [{
-        type: 'raz',
-        attributes: {
-          hello: 'pluto'
-        },
-        children: [slug]
-      },{
-        type: 'bar',
-        children: [raz, baz]
-      }]
-    };
-    var changes = diff(left, right);
-    assert.deepEqual(changes, [{
-      path: '0.0',
-      name: 'hello',
-      value: 'pluto',
-      oldValue: 'world',
-      type: 'attribute.update'
-    }, {
-      path: '0.0.0',
-      type: 'node.add',
-      node: slug
-    }, {
-      path: '0.1.0',
-      type: 'node.replace',
-      left: baz,
-      right: raz
-    }, {
-      path: '0.1.1',
-      type: 'node.add',
-      node: baz
-    }]);
-  });
+  // it('should return changes for deeply complex children', function () {
+  //   var slug = {
+  //     type: 'slug'
+  //   };
+  //   var raz = {
+  //     type: 'raz'
+  //   };
+  //   var baz = {
+  //     type: 'baz'
+  //   };
+  //   var left = {
+  //     type: 'foo',
+  //     children: [{
+  //       type: 'raz',
+  //       attributes: {
+  //         hello: 'world'
+  //       }
+  //     },{
+  //       type: 'bar',
+  //       children: [baz]
+  //     }]
+  //   };
+  //   var right = {
+  //     type: 'foo',
+  //     children: [{
+  //       type: 'raz',
+  //       attributes: {
+  //         hello: 'pluto'
+  //       },
+  //       children: [slug]
+  //     },{
+  //       type: 'bar',
+  //       children: [raz, baz]
+  //     }]
+  //   };
+  //   var changes = diff(left, right);
+  //   assert.deepEqual(changes, [{
+  //     path: '0.0',
+  //     name: 'hello',
+  //     value: 'pluto',
+  //     oldValue: 'world',
+  //     type: 'attribute.update'
+  //   }, {
+  //     path: '0.0.0',
+  //     type: 'node.add',
+  //     node: slug
+  //   }, {
+  //     path: '0.1.0',
+  //     type: 'node.replace',
+  //     left: baz,
+  //     right: raz
+  //   }, {
+  //     path: '0.1.1',
+  //     type: 'node.add',
+  //     node: baz
+  //   }]);
+  // });
 
-  it.only('should move children', function () {
-    var one = {
-      key: '1',
-      type: 'bar'
-    };
-    var two = {
-      key: '2',
-      type: 'foo'
-    };
-    var three = {
-      key: '3',
-      type: 'foo'
-    };
-    var four = {
-      key: '4',
-      type: 'foo'
-    };
-    var left = {
-      type: 'foo',
-      children: [one, two, four, three]
-    };
-    var right = {
-      type: 'foo',
-      children: [
-        two,
-        three,
-        { key: '4', type: 'bar' }
-      ]
-    };
-    var changes = diff(left, right);
-    assert.deepEqual(changes, [{
-      path: '0',
-      left: left,
-      right: right,
-      leftOrder: [1,2,4,3],
-      rightOrder: [2,3,4],
-      type: 'node.reorderChildren'
-    }]);
-  });
+  // it.skip('should move children', function () {
+  //   var one = { key: '1', type: 'bar' };
+  //   var two = { key: '2', type: 'foo' };
+
+  //   var left = {
+  //     type: 'element',
+  //     children: [one, two]
+  //   };
+
+  //   var right = {
+  //     type: 'element',
+  //     children: [two, one]
+  //   };
+
+  //   var changes = diff(left, right);
+
+  //   assert.deepEqual(changes, [{
+  //     path: '0',
+  //     node: left,
+  //     from: 0,
+  //     to: 1
+  //     type: 'node.move'
+  //   }, {
+  //     path: '0',
+  //     node: right,
+  //     from: 1,
+  //     to: 0
+  //     type: 'node.move'
+  //   }]);
+  // });
 
 });
